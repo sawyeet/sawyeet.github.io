@@ -1,0 +1,40 @@
+* {
+    font-family: "Cousine", monospace;
+    font-weight: normal;
+    line-height: 1.65;
+    padding: 3rem 0.75rem;
+    margin: 0;
+    color: #2c292d;
+    position: relative;
+    font-size: large;
+}
+
+.line { 
+    font-size: 1.2em;
+    background-color: #ffd866;
+    padding: 0.75rem 1.5rem;
+    color: #2c292d;
+    font-weight: 700;
+}
+
+h1 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+div {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+body{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.header{
+    font-size: 2em;
+    padding: 0.75rem 1.5rem;
+    color: #2c292d;
+    font-weight: 700;
+    text-align: center;
+}

@@ -2,8 +2,8 @@
     font-family: "Cousine", monospace;
     font-weight: normal;
     line-height: 1.65;
-    /* padding: 3rem 0.75rem; */
     padding-left: 0.75rem;
+    padding-right: 0.75rem;
     margin: 0;
     color: #2c292d;
     position: relative;
@@ -18,11 +18,13 @@
     font-weight: 700;
 }
 
-h1 {
-    padding-top: 20px;
-    padding-bottom: 20px;
+h1.section {
+    display:inline-block;
     text-align: center;
-    /* padding-left: 30%; */
+    padding: 0.55rem 1.5rem;
+    width: 300px;
+    background-color: #ffd866;
+
 }
 
 div {
@@ -35,28 +37,37 @@ div.para{
     padding-right: 20%;
 }
 
-/* body{
-    padding-top: 0px;
-    padding-bottom: 0px;
-} */
-.header{
+
+div.headerd{
+    text-align: center;
+    padding: 0;
+}
+h1.header{
+    display:inline-block;
+    width: 400px;
+
     font-size: 2em;
     padding: 0.75rem 1.5rem;
     color: #2c292d;
     font-weight: 700;
     text-align: center;
+    background-color: #ffd866;
 }
 
-b{
+
+
+b {
     font-weight: 700;
     padding: 0;
 }
 
-a{padding: 0;}
+a {
+    padding: 0;
+}
 
 hr {
     border-top: 1px solid #2c292d94;
-  }
+}
 
 .img{
     text-align: center;
@@ -66,4 +77,14 @@ hr {
 img{
     width:100%;
     max-width:400px;
+    padding: 0;
+}
+
+.contents {
+    text-align: center;
+}
+
+.section_header{
+    text-align: center;
+    padding: 0;
 }

@@ -33,10 +33,10 @@
             The goal of the project was to create a system which would have the ability to return a ball thrown towards it. Based on the constraints that we worked with, our project involved using the Sawyer to intercept a balloon by blocking its path with the end-effector in real time. 
             <br><br>
 
-            <b> (b) Why is this an interesting project? What interesting problems do you need to solve to make your solution work? </b>
+            <b>(b) Why is this an interesting project? What interesting problems do you need to solve to make your solution work? </b>
             <br><br>
             The project is interesting because of the real time constraint that it has. This meant that no computation could be done beforehand, and we had to make everything work fast enough to move the sawyer within a very short time frame. Even if the sawyer was not able to “hit” the ball back, simply being able to block the ball in real time with the hardware constraints we were working with would be a challenge. There were many optimizations that could be done, ranging from the software to the construction of the ball itself. This made it a real engineering challenge. 
-            <br>
+            <br><br>
             There were a lot of problems that we had to solve to be able to make this work. First of all, the Sawyer is an inherently slow robot. We had to solve the IK problem quickly, efficiently and reliably. We had to fix the planning to avoid the situation where the robot would follow a round-about trajectory for a small net change in position. Another big issue was to write a prediction algorithm for a projectile. This might seem very straightforward, but it becomes very hard when the jitter from the realsense and the tracking algorithm is considered. These problems are amplified when a balloon is used to slow down the projectile. In this case, the ball curves a lot, and if the velocity is slow enough, it simply drops to the ground because of the increased air resistance. This report will discuss each of our challenges in detail. 
             <br><br>
 

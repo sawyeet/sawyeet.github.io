@@ -1,7 +1,7 @@
 * {
     font-family: "Cousine", monospace;
     font-weight: normal;
-    line-height: 1.65;
+    line-height: 1.45;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
     margin: 0;
@@ -12,7 +12,7 @@
 
 .line { 
     font-size: 1.2em;
-    background-color: #ffd866;
+    /* background-color: #ffd866; */
     padding: 0.75rem 1.5rem;
     color: #2c292d;
     font-weight: 700;

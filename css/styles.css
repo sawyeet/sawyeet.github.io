@@ -75,6 +75,7 @@ b {
 
 a {
     padding: 0;
+    padding: 2px 10px;
     text-decoration-line: none;
 }
 
@@ -155,4 +156,15 @@ div.links{
 .topnav a:hover {
     background-color: #ffd866;
     text-decoration: underline;
+}
+
+.footer{
+    text-align: right;
+    font-size: small;
+    margin-bottom: 10px;
+}
+
+.footer a{
+    margin: 0;
+    padding: 0;
 }

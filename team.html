@@ -32,5 +32,7 @@
             Dhruv Swarup: I wrote the code for tracking as well as the actuation. For the tracking I wrote a color segmentation script, along with contour detection, and centroid calculation. From there, I extracted the 3d coordinates of the point using the depth information from the realsense. I also wrote all of that in C++ using a Kalman filter, but due to some other issues, we decided to only use the Python code and implement a Kalman filter from scratch. In the IK code, I wrote a method of first subscribing to the predicted point, and then finding the closest hardcoded end-effector point, and looking up its IK solution. Then the code would command the Sawyer to move to that position. I also helped with the tuning of the Kalman filter parameters and debugging the code integration. 
         </div>
     </div>
-
+    <footer class="footer">
+        Website by <a class="footer" href="https://github.com/dhruvswarup123">Dhruv Swarup</a>
+    </footer>
 </html>

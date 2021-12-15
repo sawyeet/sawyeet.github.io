@@ -35,6 +35,8 @@ div {
 div.para{
     padding-left: 20%;
     padding-right: 20%;
+    font-size: small;
+    text-align: justify;
 }
 
 

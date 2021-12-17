@@ -23,13 +23,101 @@
             <h1 class="section"><span class="line" id="team">Team</span></h1>
         </div>
         <div class="para">
-            <b>(a) Include names and short bios of each member of your project group. </b>
-            <br><br>
-            Dhruv Swarup: I am a student in EECS (RES) and did my undergrad in ECE. I have worked on projects involving PCB design, programming of embedded systems like building a small lidar-based robot and am good at prototyping with sensors and actuators. I have also worked on software projects involving Python, C, and C++ (mainly on Linux). I have also dabbled in web development, both frontend, and backend.
-            <br><br>
-            <b>(b) Describe the major contributions of each team member. </b>
-            <br><br>
-            Dhruv Swarup: I wrote the code for tracking as well as the actuation. For the tracking I wrote a color segmentation script, along with contour detection, and centroid calculation. From there, I extracted the 3d coordinates of the point using the depth information from the realsense. I also wrote all of that in C++ using a Kalman filter, but due to some other issues, we decided to only use the Python code and implement a Kalman filter from scratch. In the IK code, I wrote a method of first subscribing to the predicted point, and then finding the closest hardcoded end-effector point, and looking up its IK solution. Then the code would command the Sawyer to move to that position. I also helped with the tuning of the Kalman filter parameters and debugging the code integration. 
+            <div class="member">
+                <div class="member_left">
+                    <div class="member_image">
+                        <img src="https://i.guim.co.uk/img/media/327e46c3ab049358fad80575146be9e0e65686e7/0_56_1023_614/master/1023.jpg?width=1200&quality=85&auto=format&fit=max&s=4592a7be8bdbebd0e0b97e5e10a6c433" alt="person_1", width="100%">
+                    </div>
+                    <div class="member_name">
+                        <a href="https://www.linkedin.com/in/dhruv-s-b25727135/">Dhruv Swarup</a> 
+                    </div>
+                </div>
+                
+                <div class="member_desc">
+                    <div class="member_desc_heading">Bio</div>
+                    <div class="member_desc_content">
+                        I am a student in EECS (RES) and did my undergrad in ECE. I have worked on projects involving PCB design, programming of embedded systems like building a small lidar-based robot and am good at prototyping with sensors and actuators. I have also worked on software projects involving Python, C, and C++ (mainly on Linux). I have also dabbled in web development, both frontend, and backend.
+                    </div>
+
+                    <div class="member_desc_heading">Contributions</div>
+
+                    <div class="member_desc_content">
+                         I wrote the code for tracking as well as the actuation. For the tracking I wrote a color segmentation script, along with contour detection, and centroid calculation. From there, I extracted the 3-D coordinates of the point using the depth information from the RealSense. I also wrote all of that in C++ using a Kalman filter, but due to some other issues, we decided to only use the Python code and implement a Kalman filter from scratch. In the IK code, I wrote a method of first subscribing to the predicted point, and then finding the closest hardcoded end-effector point, and looking up its IK solution. Then the code would command the Sawyer to move to that position. I also helped with the tuning of the Kalman filter parameters and debugging the code integration. 
+                    </div>
+                </div>
+            </div>
+
+            <div class="member">
+                <div class="member_left">
+                    <div class="member_image">
+                        <img src="https://i.guim.co.uk/img/media/327e46c3ab049358fad80575146be9e0e65686e7/0_56_1023_614/master/1023.jpg?width=1200&quality=85&auto=format&fit=max&s=4592a7be8bdbebd0e0b97e5e10a6c433" alt="person_1", width="100%">
+                    </div>
+                    <div class="member_name">
+                        <a href="https://www.linkedin.com/in/sumanthkandala/">Sumanth Kandala</a> 
+                    </div>
+                </div>
+                
+                <div class="member_desc">
+                    <div class="member_desc_heading">Bio</div>
+                    <div class="member_desc_content">
+                        I am a Master's of Engineering Student in Mechanical Engineering (Control of Robotic and Autonomous Systems concentration). In my undergrad, I was the technical lead of the Self-Driving-Car (SeDriCa) team and was involved in Planning and Controls but I have experience in Computer Vision, Deep Learning as well, through some of my other course projects. I was also involved in the real-time testing of the self-driving-car and have worked with various sensors (LiDARs, Radars, Cameras, Stereo-Camera, etc.) used in the car. The capstone project I'm currently working on is to develop an Autonomous Off-Road Rover for Solar Power Plant Construction and involves full stack-technology from perception, to low-level-controls. 
+                    </div>
+                    <div class="member_desc_heading">Contributions</div>
+                        
+                    <div class="member_desc_content">
+                        I wrote the code for the prediction node. I tried multiple techniques to predict the location of the ball and compared the reliability and accuracy of each of these techniques. I started off with a polynomial fit based approach, but quickly realized that the camera was not able to capture enough frames to even predict the location of the ball in the right quadrant, thereby making it totally unusable. I then experimented with an algorithm to fit a ballistic trajectory to the measurements, and while the results were definitely better than the previous technique, there was still room for improvement, especially considering that there were slight inaccuracies in the estimation of the states. Finally, I implemented a simplified version of Kalman Filter from scratch to estimate the position and velocity of the ball in 3-D space and used these estimates to extrapolate the trajectory of the ball using the ballistic trajectory equation. I also helped with the debugging and testing of other software modules. 
+                    </div>
+                </div>
+            </div>
+
+            <div class="member">
+                <div class="member_left">
+                    <div class="member_image">
+                        <img src="https://i.guim.co.uk/img/media/327e46c3ab049358fad80575146be9e0e65686e7/0_56_1023_614/master/1023.jpg?width=1200&quality=85&auto=format&fit=max&s=4592a7be8bdbebd0e0b97e5e10a6c433" alt="person_1", width="100%">
+                    </div>
+                    <div class="member_name">
+                        <a href="https://www.linkedin.com/in/snagvekar/">Sanam Nagvekar</a> 
+                    </div>
+                </div>
+                
+                <div class="member_desc">
+                    <div class="member_desc_heading">Bio</div>
+                    <div class="member_desc_content">
+                        I am a recent Aerospace Engineering graduate and am currently studying Mechanical Engineering (Control of Robotic and Autonomous Systems) in the UC Berkeley M.Eng. program. I bring a diverse skill set ranging from solid modeling and manufacturing of hardware to basic programming and control system design. I have designed and manufactured hardware for autonomous underwater vehicles and have conducted FEA analysis on satellite components in the industry. 
+                    </div>
+
+                    <div class="member_desc_heading">Contributions</div>
+
+                    <div class="member_desc_content">
+                        I helped in programming and integrating the original (IK Solver) actuation node. This involved writing code to accept position data from the prediction node and actuating the end-effector to intercept the ball. Due to the IK Solver's slow planning, the code was replaced with a hash-map lookup table. I also contributed to the testing and debugging process. This included choosing end-effector positions for the hash-map lookup table and testing the accuracy of the prediction node. 
+                    </div>
+                </div>
+            </div>
+
+            <div class="member">
+                <div class="member_left">
+                    <div class="member_image">
+                        <img src="https://i.guim.co.uk/img/media/327e46c3ab049358fad80575146be9e0e65686e7/0_56_1023_614/master/1023.jpg?width=1200&quality=85&auto=format&fit=max&s=4592a7be8bdbebd0e0b97e5e10a6c433" alt="person_1", width="100%">
+                    </div>
+                    <div class="member_name">
+                        <a href="https://www.linkedin.com/in/om-prabhu/">Om Prabhu</a> 
+                    </div>
+                </div>
+                
+                <div class="member_desc">
+                    <div class="member_desc_heading">Bio</div>
+                    <div class="member_desc_content">
+                        I am a Master's of Engineering student in Mechanical Engineering with a concentration of Control of Robotics and Autonomous Systems. I have completed numerous projects in Java, C, Python and Matlab, including a path planning project for an autonomous vehicle. I have also worked on a project developing a juggling robot during my undergrad with Arduino. My current capstone project is working with computer vision and object detection for radar and camera sensory inputs. 
+                    </div>
+
+                    <div class="member_desc_heading">Contributions</div>
+                    <div class="member_desc_content">
+                        I wrote the original code for the Inverse Kinematics node for actuation, but due to the aforementioned issues, we decided to scrap that code and use a hashmap instead. I also wrote some of the original code for the color segmentation portion using mask and removing noise functions in Python. I helped with the tuning of the Kalman filter parameters for the prediction algorithm.                    
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
     <footer class="footer">

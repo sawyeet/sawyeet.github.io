@@ -200,62 +200,17 @@ u.conclist_u{
 
 div.member_name{
     display: inline-block;
-    font-size: 25px;
-    font-weight: 700;
-    /* background-color: #ffd866; */
+    font-size: larger;
+    font-weight: 600;
+    background-color: #ffd866;
     padding: 0;
-    width: 300px;
+    width: 200px;
     text-align: right;
 }
 
 div.member_image{
     padding: 0;
-    width: 300px;
+    margin-top: 30px;
+    width: 200px;
 }
 
-.member_image img{
-    padding: 0%;
-}
-
-div.member_left{
-    display: inline-block;
-    /* vertical-align: top; */
-    padding: 0;
-    margin: 0;
-    width: 300px;
-    padding-right: 50px;
-}
-
-div.member_desc{
-    display: inline-block;
-    padding: 0;
-    vertical-align: top;
-    width: fit-content;
-}
-
-div.member{
-    display: flex;
-}
-
-div.member_desc div{
-    padding: 0;
-}
-
-.member_desc .member_desc_heading{
-    font-size: large;
-    font-weight: 700;
-    text-decoration: underline;
-}
-
-.member_desc .member_desc_content{
-    padding-bottom: 20px;
-    font-size: medium;
-}
-
-.member_name a{
-    font-size: 25px;
-    font-weight: 700;
-    padding: 0;
-    width: 300px;
-    text-align: right;
-}

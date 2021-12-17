@@ -91,7 +91,7 @@ hr {
 .img{
     text-align: center;
     display: block;
-    padding-bottom: 0;
+    padding: 0;
 }
 
 img{
@@ -179,4 +179,9 @@ div.links{
 b.small{
     font-weight: 700;
     font-size: small;
+}
+
+div.oneline_images{
+    display: inline-block;
+    padding: 0;
 }

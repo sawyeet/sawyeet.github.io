@@ -25,9 +25,37 @@
         <div class="para">
             <b>(a) How well did your project work? What tasks did it perform? </b>
             <br><br>
-
-            <b>(b) Illustrate with pictures and at least one video.</b>
+            The target goals for this project have been accomplished - the Sawyer robot is able to intercept balls thrown within its reachable workspace. Specifically, the robot is able to (i) detect and track the x, y, and z position a thrown ball using a RealSense camera, (ii) predict the ball's trajectory in real-time, and (iii) actuate the end-effector (paddle) to intercept the ball. 
             <br><br>
+
+            <div style="text-align: center;">
+                <div class="oneline_images">
+                    <div class="img"><img src="https://drive.google.com/uc?export=view&id=1df_8vhyRKiVJth3I_VAaSOtWKMkl93sZ" alt="Sawyer Robot" width=80% ></div>
+                    <div class="label">Figure 1: Mask of the green color</div>
+                </div>
+                <div class="oneline_images">
+                    <div class="img"><img src="https://drive.google.com/uc?export=view&id=1PFApVLK6mEUeg-fydsIWRcgGGUrLkm0C" alt="Sawyer Robot" width=80% ></div>
+                    <div class="label">Figure 2: Ball center detection</div>
+                </div>
+            </div>
+            The object detection node provides robust and accurate measurements of the ball's real-time x, y, and z coordinates. Note that the object detection node utilizes color segmentation to extract the ball's x and y position from the surrounding environment. Therefore, tuning of HSV values (to account for changes in ambient brightness) is required for accurate tracking. An example of successful robust segmentation and detection of the neon green ball is shown above. The parts of the red balloon not covered by the tape do show up as inconsistencies on the mask, but that is not a big issue. 
+            <br><br>
+
+            <div class="img"><img src="https://drive.google.com/uc?export=view&id=11rve4mjKi4qda6ExitvohDXxDMM8c3lX" alt="Sawyer Robot" width=80% ></div>
+            <div class="label">Figure 3: GIF of the measured and predicted trajectories</div>
+
+            While the prediction node often generates reliable trajectories, the quality of its predictions is highly dependent on the quality of the ball toss and the number of frames recorded. Specifically, when the ball is thrown toward the camera, at least three frames of position data (mid-throw) must be recorded to generate an accurate trajectory prediction. Given the narrow camera FOV and the limited throwing distance, the ball must be thrown diagonally (towards the camera) for maximum accuracy. However, for a proper ball throw, the prediction node can interpolate the ball's trajectory (2 meters behind the camera) within 15 cm of the actual position. One such generated trajectory is highlighted in the animation above. 
+            <br><br>
+            Similarly, the performance of the end-effector actuation node is dependent on both the quality of the ball throw and the accuracy of the predicted trajectory. As mentioned prior, the hash-map lookup table provides faster end-effector actuation compared to typical IK solvers. However, Sawyer speed limitations prevent the end-effector from intercepting the ball if it is travelling too fast. The ball must also be thrown accurately within the reachable workspace of the robot, and within a reasonable distance from the hardcoded end-effector locations. Moreover, if the prediction node generates incorrect final positions, the end-effector may move to the wrong position and will not deflect the thrown ball. Regardless, given an accurate ball throw within the reachable workspace and an accurately predicted trajectory, the robot arm will reliably intercept the thrown ball. Specifically, our Sawyer was able to intercept 11 out of 15 thrown balls. A video of the actuation and ball interception is shown.
+            <br><br>
+
+            <b>Demo Videos</b>
+            <br><br>
+            Here are some demo video that we collected. The Sawyer with the cardboard end-effector is the one that we are using. 
+            <br><br>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/y-iX2fAhCqg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/D9bkoAhSlDg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/r2DT9WFrWyQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
         </div>
     </div>

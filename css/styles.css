@@ -103,6 +103,10 @@ img{
     text-align: center;
 }
 
+div.contents a{
+    font-size: larger;
+}
+
 .section_header{
     text-align: center;
     padding: 0;

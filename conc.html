@@ -23,13 +23,38 @@
             <h1 class="section"><span class="line" id="conc">Conclusion</span></h1>
         </div>
         <div class="para">
-            <b>(a) Discuss your results. How well did your finished solution meet your design criteria? </b>
+            <b>Results and Discussion</b>
+            <br><br>
+            When the HSV thresholds were finely tuned to environment lighting conditions, the object detection node was able to segment the ball without any noisy patches and accurately compute the distances. Similarly, given a proper ball toss (light ball thrown across the camera frame to capture maximum frames), the prediction node generated accurate trajectories within 15 cm of the actual ball position when interpolated at a distance of 2 meters behind the camera along the Z-Axis of the camera. Also, given a good throw, the robot is shown to intercept the ball 7 out of 10 times (70% accuracy). Here a good throw means one with enough points in the prediction 3-D plot. The tracking, prediction, and actuation nodes culminate in an intercepting robot that meets all of our design criteria and accomplishes the target goals.
             <br><br>
 
-            <b>(b) Did you encounter any particular difficulties? </b>
+            <b>Challenges and Difficulties</b>
             <br><br>
+            We faced a lot of problems and were able to fix most of them, but unfortunately had to live with some. The following list summarizes some of our major difficulties and the techniques we used (wherever possible) to tackle these difficulties: 
+            <br><br>
+            
+            <ol>
+                <li class="conclist"><u class="conclist_u"><b class="small">Camera FPS and Prediction:</b></u></u> To be able to predict the path accurately, the algorithm needs a lot of frames. Increasing the number of measurements per second gives the algorithm a much better idea of where the ball is and will be. To get a high FPS, the resolution has to be turned down. Turning the resolution down, however, made the detection of the ball worse. Due to this compromise, we decided to use a ball with a large surface area and decided to opt for lower resolutions.</li>
+                
+                <li class="conclist"><u class="conclist_u"><b class="small">Camera Resolution and Object Detection: </b></u>The quality of the detection depends on the size of the cluster of green pixels that the camera can see. Turning down the resolution meant that when the ball was moving fast, it would only appear as a small streak of green dot, making accurate positioning very hard. This was an active trade off, and we found a decent combination which worked: this was at 640 x 480 at 30 FPS.</li> 
+                
+                <li class="conclist"><u class="conclist_u"><b class="small">Ball Speed and Prediction:</b></u> To make the prediction algorithm capture more frames with the ball in it, the ball had to be made bigger and slower. The easiest solution we could find was to use a balloon. Though this solved the immediate problem of size and speed, it created many more, some of which are listed below.</li>
 
-            <b>(c) Does your solution have any flaws or hacks? What improvements would you make if you had additional time? </b>
+                <li class="conclist"><u class="conclist_u"><b class="small">Balloon Trajectories:</b></u> Balloons in general do not follow ballistic trajectories. This means that the previously modelled kalman filter based prediction model would not work. Instead of factoring in the balloon trajectories, which are highly unpredictable, we decided to cover the balloon with duct tape, which is both heavy and neon green in color. This made the trajectories more predictable, and also helped the reliability of the detection module due to the fluorescent color.</li>
+
+                <li class="conclist"><u class="conclist_u"><b class="small">Kalman Filter Tuning:</b></u> Because of measurement jitter, the “measured values” in a Kalman filter could not completely depend on the actual measured values from our algorithm. So, we used a weighted combination of the measured combinations and state predictions for the positions and velocities along the X, Y, and Z axes. These weights (which represent the measurement noise) needed to be tuned using an experimental process, and took a long time.</li>
+
+                <li class="conclist"><u class="conclist_u"><b class="small">Motion Planning Speed and Paths:</b></u> The motion planning algorithms were unreliable and would often fail to plan, or cause some of the joints to rotate more than 180 degrees, even when we only wanted to move the end-effector by a small amount. So, we did not use the motion planner and instead incorporated a precomputed dictionary (hashmap) that mapped the end-effector locations to the joint angles. While recording the joint angles at various positions in the Z-plane, we moved Sawyer's arm manually, ensuring that we limited the amount of rotation in each of the joints. Finally, we obtained the joint angles for the end-effector location stored in the dictionary which was closest (Euclidean Distance in the Z-plane) to the predicted location of the ball.</li>
+                
+                <li class="conclist"><u class="conclist_u"><b class="small">IK Speed:</b></u> The process of solving for the joint angles using IK often involves solving the forward kinematics equations repeatedly to find the right combination of joint angles. Furthermore, the IK solver would sometimes move the Sawyer all the way around rather than the quickest way to get there. This is very slow and can take more than a second, which was unacceptable since we needed the Sawyer to react with 0.5 - 0.8 seconds. This means that, for a ball moving at around 2 m/s, we would have to start predicting almost 2.5 - 4 metres away from the Sawyer, giving it enough time to move. This was not reliable, and we moved to our precomputed hashmap based actuation technique where the only delay was due to the speed of the motors in each of the rotational joints of the Sawyer.</li> 
+                
+                <li class="conclist"><u class="conclist_u"><b class="small">Sawyer Speed & Prediction Inaccuracies:</b></u> The actual speed of the joints in the Sawyer limited the prediction distance. At the fastest possible joint speeds, the sawyer would need at least 0.5 seconds to get to its final position. Based on this, we decided to position the camera around 2 metres away, to give the robot enough time to respond. However, the farther away from the origin of the camera that the prediction node extrapolates, the more inaccurate its predictions get. This is expected since each angular deviation in the estimation of the states has a progressively larger effect as the radial distance increases. Eventually, based on our experiments, we decided that we would not extrapolate more than 2 meters away (behind) from the camera.</li>
+                
+                <li class="conclist"><u class="conclist_u"><b class="small">Ball Throws:</b></u> While we implemented all these improvements, we still needed to maximize the number of frames in which the ball was detected. Even on “good” throws that were close to the FOV of the camera, we would get a maximum of 8 frames. Since the throw had to last as long as possible in the FOV of the realsense,  the pitcher had to ensure that they were throwing the ball as slowly, and diagonally across the frame.</li> 
+
+            </ol>
+            <br><br>
+            <b>Current Flaws and Future Improvements</b>
             <br><br>
 
         </div>

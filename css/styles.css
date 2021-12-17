@@ -189,3 +189,11 @@ div.oneline_images{
     display: inline-block;
     padding: 0;
 }
+
+li.conclist{
+    font-size: small;
+}
+
+u.conclist_u{
+    padding:0;
+}

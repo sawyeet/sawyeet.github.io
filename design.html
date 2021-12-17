@@ -23,7 +23,7 @@
             <h1 class="section"><span class="line" id="design">Design</span></h1>
         </div>
         <div class="para">
-                <b>Design criteria and desired functionality</b>
+                <b>Design Criteria and Desired Functionality</b>
             <br><br>
             The main design criteria that we had was to be able to do this in real time, instead of simulating projectile motion either programmatically, or by hand. This resulted in the compromise of some aspects of our project such as minimizing the reachable workspace of the robot.  Most of these optimizations would not have been needed if it were not for this criteria. The project would have two parts to its functionality, the pitcher and the receiver. The pitcher is the person who would throw the ball from a distance, and the receiver is the robot whose goal is to estimate the trajectory of the projectile and block its path. 
             <br><br>
@@ -35,7 +35,7 @@
             <br><br>
             While the design is relatively simple, the main challenges appear while considering the limitations of each module in our hardware setup. 
             <br><br>
-                <b>Design choices and trade-offs</b>
+                <b>Design Choices and Trade-offs</b>
             <br><br>
             The first design choice we had to make was related to the construction of the ball. There were several options: a tennis ball, a custom ball, and a balloon. The tennis ball was too heavy and small and since the RealSense had a low depth capture rate (15 fps at 720p resolution and 30 fps at lower resolutions), any projectile that moved even relatively fast was insufficient for our prediction node to accurately estimate the state of the projectile and predict its location. The next option was to use a custom paper ball wrapped with neon tape which was made lighter by using a sponge core. Though the detection results here were much better, the speed of our custom ball was still too fast. Eventually, we decided to experiment with a balloon, which could potentially let us capture its position for more frames before it goes out of the field of view (FOV) of the camera. While the balloon was just slow enough, and worked well with detection, the prediction node was not able to predict its non-linear motion. In an effort to improve this, we used a partially inflated balloon with tape wrapped around it to increase the weight to make it just slow enough. This allowed for the prediction node to estimate the state of the balloon and the balloon would be just fast enough to reach the sawyer in a trajectory similar to a projectile. This sweet spot worked very well except the balloon was still curving in our throws due its asymmetrical shape and lightweight. To address this issue, we decided to simply put an underspin on the balloon, and this helped to reduce the side-spin.
             <br><br>
@@ -45,7 +45,7 @@
             <br><br>
             Finally, one of the biggest constraints was due to the slow movement speed of the Sawyer, specifically the low joint speeds. To be able to react in time (0.5 - 0.8 seconds), we had to design the system to avoid the MoveIt based path planning and IK solving and set the joint angles directly. To do this, we manually measured points in the 3-D space and created a hashmap from end effector positions to joint angles thereby avoiding an IK solver. 
             <br><br>
-                <b>Design choices and real-world criteria</b>
+                <b>Design Choices and Real-World Criteria</b>
             <br><br>
             Each of the design choices were to make the computation faster and more reliable, while trying to solve the problem in real time. Without these compromises and optimizations in our code, the only way for the Sawyer to react in time would be the case when we move the ball slowly by hand in the frame of the camera. Based on our design choices, we were able to make our project robust with our software stack capable of predicting the position of the ball accurately whenever the prediction node received at least 5-6 frames.  Because of our design choices, our software and Sawyer would track, predict, and actuate within 1 second. However, for our project to be productionized, having a camera with a better FPS and a larger FOV would make our project more robust and increase the success rate of Sawyer blocking or catching a fast-moving ball/projectile. 
             <br><br>

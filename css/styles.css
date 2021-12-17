@@ -70,6 +70,7 @@ h1.header{
 b {
     font-weight: 700;
     padding: 0;
+    text-decoration: underline;
 }
 
 a {
@@ -183,6 +184,7 @@ div.links{
 b.small{
     font-weight: 700;
     font-size: small;
+    text-decoration: none;
 }
 
 div.oneline_images{

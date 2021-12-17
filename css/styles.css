@@ -259,3 +259,8 @@ div.member_desc div{
     width: 300px;
     text-align: right;
 }
+
+sup{
+    padding: 0;
+    font-size: smallest;
+}

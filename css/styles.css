@@ -52,6 +52,10 @@ div.headerd{
     text-align: center;
     padding: 0;
 }
+.headerd a{
+    padding: 0;
+    background-color: none;
+}
 h1.header{
     /* display: inline-block; */
     /* position: relative; */

@@ -56,6 +56,10 @@
             <br><br>
             <b>Current Flaws and Future Improvements</b>
             <br><br>
+            Due to the FOV and FPS restrictions of the RealSense camera, the performance of the project relies heavily on the technique of the ball toss. If we were given more time (and money), additional cameras or better cameras that captured at higher frame rates could have been implemented in the project design. Using two cameras for example, would allow them to capture more data and even account for the slight inaccuracies in the position of the detected ball (particularly in Z-Axis), which would improve the reliability of the prediction node. However, instead of two cameras, a single camera with a wider FOV would also significantly increase the success rate of our project. Similarly, more end-effector positions could be added to the hash-map lookup table to increase the reachable workspace of the robot.
+            <br><br>
+            If we could acquire better hardware and could invest more time into this project, the end-effector could be programmed to return a ball back to the thrower, rather than simply intercepting it. Performing this reach goal would require faster predictions from the software and faster movements from the robot. This task would involve tracking the position of the thrower (along with the ball) and would require additional actuation of the end-effector, such as a wrist motion to “hit” the ball in order to return it back to the pitcher.    
+
 
         </div>
     </div>

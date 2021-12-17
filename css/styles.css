@@ -95,7 +95,7 @@ hr {
 }
 
 img{
-    width:400px;
+    max-width:400px;
     padding: 0;
 }
 
@@ -166,4 +166,17 @@ div.links{
 .footer a{
     margin: 0;
     padding: 0;
+}
+
+.label{
+    text-align: center;
+    font-size: small;
+    padding-top: 0;
+    font-style: italic;
+    font-weight: 700;
+}
+
+b.small{
+    font-weight: 700;
+    font-size: small;
 }

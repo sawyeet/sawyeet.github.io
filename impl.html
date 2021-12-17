@@ -23,27 +23,55 @@
             <h1 class="section"><span class="line" id="impl">Implementation</span></h1>
         </div>
         <div class="para">
-            <b>(a) Describe any hardware you used or built. Illustrate with pictures and diagrams.</b>
-            <br><br> 
-
-            There were 2 main hardware components. 
+            <b>Hardware used and built</b>
             <br><br>
 
-            The first one is the Sawyer robot from the lab. This is a 7-DOF manipulator. 
+            <div class="img"><img src="images/sawyer.jpg" alt="Sawyer Robot" width=30% ></div>
+            <div class="label">Figure 1: Sawyer Robot</div>
+
+            There are 2 main hardware components in our project. The first one is the Sawyer robot (Figure 1) from the lab which is a 7-DOF manipulator, with only rotational joints, and one arm. 
+            <br><br>
+            
+            <div class="img"><img src="images/realsense.png" alt="Sawyer Robot" width=30% ></div>
+            <div class="label">Figure 2: Intel realsense D435i</div>
+
+            The second one is the RealSense D435i (Figure 2). The camera has a max resolution of 1280x720 for the depth camera and 1920x1080 for the rgb image. The max fps is 90 FPS for the depth and 30 FPS for the RGB camera at 640x480 resolution. The FOV of the camera is very small at 87°x 58°.
+            <br><br>
+            <div class="img"><img src="https://drive.google.com/uc?export=view&id=1ZyDpztwG5FsKdMEEYVW_f8LJ1SRcGumq" alt="Sawyer Robot" width=20% ></div>
+            <div class="label">Figure 3: Balloon with duct tape</div>
+            
+            The final piece of hardware was the “ball” (Figure 3), which we constructed using a balloon and duct tape. The tennis ball that we tested worked well when held, but due to its high speed when thrown, the prediction node failed sometimes as it was not able to capture enough frames of the position of the ball in order to accurately predict its trajectory. So, we used a partially inflated balloon (to about 40% capacity), and wrapped it with a few rounds of neon green colored duct tape, ensuring that it could still travel at slower speeds than a tennis ball. The tape not only improved segmentation and position tracking, but also made the balloon heavier enabling the balloon to follow a parabolic path instead of an unpredictable path. 
             <br><br>
 
-            The second one is the realsense camera. The camera has a max resolution of 720p at 15fps, and ___ at ___. The FOV is very small at ___ degrees.
-            The last one is a piece of hardware that we built: The ball. The tennis ball that we tested worked well when held, but tracking failed when the ball was thrown relatively fast, and therefore the prediction failed too. So we ended up using a moderately filled balloon (to about 40% capacity), and wrapped with neon green duct tape. The tape not only improved segmentation and tracking, but also made the balloon heavier. This way it would follow a better projectile motion path rather than an unpredictable path. Because at the core, it was a balloon and had a larger surface area, we were able to throw it slowly, and this improved the tracking at “higher speeds”. 
+            <b>Software Stack</b>
             <br><br>
 
-            <b>(b) What parts did you use to build your solution?</b>
+            The software stack for this project can be divided into three stages: ball detection (tracking), trajectory prediction, and sawyer actuation (inverse kinematics). We have 4 main files that correspond to each of these steps: 
+            <br><br>
+            <b class="small">
+				Sawyeet/src/sawyeet/src/:
+					<br>- tracking_utils.py
+					<br>- tracker_3d.py	
+					<br>- prediction.py
+					<br><br>
+				Sawyeet/src/ik/src/:
+					<br>- hardcoded.py
+			</b>
+			
+
+            <br><br>
+            <b class="small">tracking_utils.py:</b> This is a helper file for tracker_3d.py and contains the Hue-Saturation-Value (HSV) range information for many colors and two functions. One of these functions receives a frame and checks each pixel to see if it is within the range of the given color. This function returns a grayscale mask of the frame, where the white patches of the mask denote the pixels where the color in the original image matches our requirement (neon-green color range). The other function receives the grayscale mask to find the largest contour, ignoring any smaller patches (noise), and then gets the smallest enclosing circle in that contour. The pixel locations of the points enclosed in that circle are averaged out marking the “center” of the detected ball.
             <br><br>
 
-            <b>(c) Describe any software you wrote in detail. Illustrate with diagrams, flow charts, and/or other appropriate visuals. This includes launch files, URDFs, etc. 2 </b>
+            <b class="small">tracker_3d.py:</b> This ROS node subscribes to 3 ROS topics from the RealSense Package: the aligned depth, the color image, and the camera information. It then synchronises each of the topics and creates a callback for the synchronized topics. For each input frame that it receives from the RealSense, it uses the helper functions from the tracking_utils.py file to get the centroid of the ball. Then it uses the aligned depth frame to get the average depth (along the z-axis) at that centroid. It then uses the camera matrix to convert this information into world 3-D coordinates and publishes this information using the geometry_msgs/Point message type.
             <br><br>
 
-            <b>(d) How does your complete system work? Describe each step. </b>
+            <b class="small">prediction.py:</b> This ROS node subscribes to the 3-D world coordinates published by tracker_3d.py and needs to be launched just before the user is ready to throw the ball. Once launched, every time the node receives the 3-D coordinates of the detected ball, it performs a state-estimation using a Kalman Filter. Once the ball leaves the frame, it predicts the location that the ball would intersect with the Z-Plane using the estimated state data and publishes the predicted location as a geometry_msgs/PoseStamped message. The final predicted location of the ball is a 3-D real-world coordinate at a fixed distance (along the Z-Axis/Plane of the RealSense Camera) from the Sawyer. 
             <br><br>
+
+            <b class="small">hardcoded.py:</b> This ROS node subscribes to a geometry_msgs/PoseStamped message published by the prediction node, and performs a lookup for the end-effector position that is closest to the predicted location, in a dictionary (generated offline) that maps from end effector positions to joint angles. It then uses these joint angles and moves the arm to the desired location. 
+            <br><br>
+
 
         </div>
     </div>

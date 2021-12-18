@@ -8,7 +8,7 @@
 
     <div class="headerd"><h1 class="header">SawYeet</h1></div>
 
-    <div class="contents">
+    <!-- <div class="contents">
         <ul style="list-style-type: none;">
             <li><a href="index.html#intro">Introduction</a></li>
             <li><a href="design.html">Design</a></li>
@@ -18,8 +18,18 @@
             <li><a href="team.html">Team</a></li>
             <li><a href="add.html">Additional Materials</a></li>
         </ul>
-    </div>
-    <hr>
+    </div> -->
+    <div class="topnav">
+        <div class="links"><a href="index.html">Home</a></div>
+        <div class="links"><a href="design.html">Design</a></div>
+        <div class="links"><a href="impl.html">Implementation</a></div>
+        <div class="links"><a href="results.html">Results</a></div>
+        <div class="links"><a href="conc.html">Conclusion</a></div>
+        <div class="links"><a href="team.html">Team</a></div>
+        <div class="links"><a href="add.html">Add. Materials</a></div>
+    </div> 
+
+    <!-- <hr> -->
     <br>
     <div class="img"><img src="images/sawyer.jpg" alt="Sawyer Robot" width=50% ></div>
 
@@ -33,7 +43,7 @@
             <br><br>
             The goal of the project was to create a robotic system which would have the ability to return a ball thrown towards it. Based on the hardware constraints that we worked with, our project involved using the Sawyer to intercept a balloon by blocking its path with the end-effector in real time. 
             <br><br>
-                <b>Why is this Interesting?</b>
+                <b>Why is this interesting?</b>
             <br><br>
             The project is interesting because it works in real-time with fast moving projectiles despite the constraints. This means that no computation can be done beforehand, and we had to optimize our nodes to work fast enough to move the sawyer within a very short time frame (0.5-0.8 seconds). Even if the sawyer was not able to “hit” the ball back, simply being able to block the ball in real time with the hardware constraints we were working with would be a challenge. There were many optimization techniques that could be used, ranging from the software optimizations to the construction and positioning of the ball itself. However, simply using one technique to improve the speed of a module wouldn’t be enough for our project to work, and using these techniques in conjunction and tuning various parameters was the real engineering challenge. 
             <br><br>

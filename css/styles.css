@@ -51,9 +51,13 @@ div.para{
 div.headerd{
     text-align: center;
     padding: 0;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
 }
 .headerd a{
     padding: 0;
+    margin: 0;
     background-color: none;
 }
 h1.header{
@@ -68,8 +72,6 @@ h1.header{
     text-align: center;
     background-color: #ffd866;
 }
-
-
 
 b {
     font-weight: 700;
@@ -143,6 +145,9 @@ div.contents a{
     /* margin-top: 50px; */
     text-align: center;
     position: fixed;
+    z-index: 1000;
+    width: 100%;
+    margin-top: 4.35rem;
 }
 
 div.links{

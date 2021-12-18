@@ -136,12 +136,13 @@ div.contents a{
 
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #ffd9663f;
+    background-color: #fff6d9;
     overflow: hidden;
     padding: 0;
     /* padding-top: 4px; */
     /* margin-top: 50px; */
     text-align: center;
+    position: fixed;
 }
 
 div.links{

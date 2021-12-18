@@ -27,9 +27,9 @@
             <br><br>
             The main design criteria that we had was to be able to do this in real time, instead of simulating projectile motion either programmatically, or by hand. This resulted in the compromise of some aspects of our project such as minimizing the reachable workspace of the robot.  Most of these optimizations would not have been needed if it were not for this criteria. The project would have two parts to its functionality, the pitcher and the receiver. The pitcher is the person who would throw the ball from a distance, and the receiver is the robot whose goal is to estimate the trajectory of the projectile and block its path. 
             <br><br>
-                <b>Our design</b>
+                <b>Our Design</b>
             <br><br>
-            <div class="img"><img src="https://drive.google.com/uc?export=view&id=1siEwOACUc-O78FSV7cpsiL4kvVhTIR3R" alt="Sawyer Robot" width=600px ></div>
+            <div class="img"><img src="https://drive.google.com/uc?export=view&id=1siEwOACUc-O78FSV7cpsiL4kvVhTIR3R" alt="Sawyer Robot" width=600px style="max-width: none;"></div>
             <div class="label">Figure 1: Top view of setup</div>
             <br>
             Our hardware design has 3 components: the ball, the depth camera, and the robot. The depth camera was used to locate the ball in real-world 3-D coordinates with respect to the frame of the Sawyer. These 3-D point coordinates were recorded in real-time and used by our prediction node to estimate the position (accounting for sensor noise) & velocity of the ball, and finally predict the location of a ball where it intersects the Z-axis plane (formed by the axis of the camera). Based on this information, and the approximate movement speed of the Sawyer, we used our Inverse Kinematics node to move the end effector to the predicted location.

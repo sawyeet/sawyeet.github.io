@@ -29,6 +29,9 @@
             <br><br>
                 <b>Our design</b>
             <br><br>
+            <div class="img"><img src="https://drive.google.com/uc?export=view&id=1siEwOACUc-O78FSV7cpsiL4kvVhTIR3R" alt="Sawyer Robot" width=600px ></div>
+            <div class="label">Figure 1: Top view of setup</div>
+            <br>
             Our hardware design has 3 components: the ball, the depth camera, and the robot. The depth camera was used to locate the ball in real-world 3-D coordinates with respect to the frame of the Sawyer. These 3-D point coordinates were recorded in real-time and used by our prediction node to estimate the position (accounting for sensor noise) & velocity of the ball, and finally predict the location of a ball where it intersects the Z-axis plane (formed by the axis of the camera). Based on this information, and the approximate movement speed of the Sawyer, we used our Inverse Kinematics node to move the end effector to the predicted location.
             <br><br>
             Based on this design, the software architecture has three components - ball detection, state estimation & trajectory prediction, and actuation. The ball detection node uses computer vision techniques to detect the ball and convert its position from the camera frame to real-world 3-D point coordinates. The trajectory prediction node is purely software based, and uses the 3-D coordinates of the ball as well as a simplified Kalman Filter to estimate the state of the ball and predict its location. Finally, the actuation node computes the joint angles for the sawyer based on the prediction and moves the end-effector to the required position.

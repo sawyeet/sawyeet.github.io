@@ -53,39 +53,50 @@
             <b>Software Stack</b>
             <br><br>
 
-            <div class="img">
-                <img width="600px" src="https://drive.google.com/uc?export=view&id=13Uqgwtt3qXXSzvCoJti-BbEqH89zP61_" 
-                    alt="Sawyer Robot" 
-                    style="max-width: none;">
+            <div class="impl_stack_container">
+                
+                <div class="impl_stack_text">
+                    The software stack for this project can be divided into three stages: ball detection (tracking), trajectory prediction, and sawyer actuation (inverse kinematics). We have 4 main files that correspond to each of these steps: 
+                    <br><br>
+                    <b class="small">
+                        Sawyeet/src/sawyeet/src/:
+                            <br>- tracking_utils.py
+                            <br>- tracker_3d.py	
+                            <br>- prediction.py
+                            <br><br>
+                        Sawyeet/src/ik/src/:
+                            <br>- hardcoded.py
+                    </b>
+                    
+    
+                    <br><br>
+                    <b class="small">tracking_utils.py:</b> This is a helper file for tracker_3d.py and contains the Hue-Saturation-Value (HSV) range information for many colors and two functions. One of these functions receives a frame and checks each pixel to see if it is within the range of the given color. This function returns a grayscale mask of the frame, where the white patches of the mask denote the pixels where the color in the original image matches our requirement (neon-green color range). The other function receives the grayscale mask to find the largest contour, ignoring any smaller patches (noise), and then gets the smallest enclosing circle in that contour. The pixel locations of the points enclosed in that circle are averaged out marking the “center” of the detected ball.
+                    <br><br>
+    
+                    <b class="small">tracker_3d.py:</b> This ROS node subscribes to 3 ROS topics from the RealSense Package: the aligned depth, the color image, and the camera information. It then synchronises each of the topics and creates a callback for the synchronized topics. For each input frame that it receives from the RealSense, it uses the helper functions from the tracking_utils.py file to get the centroid of the ball. Then it uses the aligned depth frame to get the average depth (along the z-axis) at that centroid. It then uses the camera matrix to convert this information into world 3-D coordinates and publishes this information using the geometry_msgs/Point message type.
+                    <br><br>
+    
+                    <b class="small">prediction.py:</b> This ROS node subscribes to the 3-D world coordinates published by tracker_3d.py and needs to be launched just before the user is ready to throw the ball. Once launched, every time the node receives the 3-D coordinates of the detected ball, it performs a state-estimation using a Kalman Filter. Once the ball leaves the frame, it predicts the location that the ball would intersect with the Z-Plane using the estimated state data and publishes the predicted location as a geometry_msgs/PoseStamped message. The final predicted location of the ball is a 3-D real-world coordinate at a fixed distance (along the Z-Axis/Plane of the RealSense Camera) from the Sawyer. 
+                    <br><br>
+    
+                    <b class="small">hardcoded.py:</b> This ROS node subscribes to a geometry_msgs/PoseStamped message published by the prediction node, and performs a lookup for the end-effector position that is closest to the predicted location, in a dictionary (generated offline) that maps from end effector positions to joint angles. It then uses these joint angles and moves the arm to the desired location. 
+                    <br><br>
+                    
+                </div>
+
+                <div class="impl_stack_img">
+                    <div class="img">
+                        <img width="100%" src="https://drive.google.com/uc?export=view&id=13Uqgwtt3qXXSzvCoJti-BbEqH89zP61_" 
+                            alt="Sawyer Robot" 
+                            style="max-width: none;">
+                    </div>
+    
+                    <div class="label">Figure 5: Software Stack</div>
+                </div>
             </div>
+            
 
-            <div class="label">Figure 5: Software Stack</div>
-
-            The software stack for this project can be divided into three stages: ball detection (tracking), trajectory prediction, and sawyer actuation (inverse kinematics). We have 4 main files that correspond to each of these steps: 
-            <br><br>
-            <b class="small">
-				Sawyeet/src/sawyeet/src/:
-					<br>- tracking_utils.py
-					<br>- tracker_3d.py	
-					<br>- prediction.py
-					<br><br>
-				Sawyeet/src/ik/src/:
-					<br>- hardcoded.py
-			</b>
-			
-
-            <br><br>
-            <b class="small">tracking_utils.py:</b> This is a helper file for tracker_3d.py and contains the Hue-Saturation-Value (HSV) range information for many colors and two functions. One of these functions receives a frame and checks each pixel to see if it is within the range of the given color. This function returns a grayscale mask of the frame, where the white patches of the mask denote the pixels where the color in the original image matches our requirement (neon-green color range). The other function receives the grayscale mask to find the largest contour, ignoring any smaller patches (noise), and then gets the smallest enclosing circle in that contour. The pixel locations of the points enclosed in that circle are averaged out marking the “center” of the detected ball.
-            <br><br>
-
-            <b class="small">tracker_3d.py:</b> This ROS node subscribes to 3 ROS topics from the RealSense Package: the aligned depth, the color image, and the camera information. It then synchronises each of the topics and creates a callback for the synchronized topics. For each input frame that it receives from the RealSense, it uses the helper functions from the tracking_utils.py file to get the centroid of the ball. Then it uses the aligned depth frame to get the average depth (along the z-axis) at that centroid. It then uses the camera matrix to convert this information into world 3-D coordinates and publishes this information using the geometry_msgs/Point message type.
-            <br><br>
-
-            <b class="small">prediction.py:</b> This ROS node subscribes to the 3-D world coordinates published by tracker_3d.py and needs to be launched just before the user is ready to throw the ball. Once launched, every time the node receives the 3-D coordinates of the detected ball, it performs a state-estimation using a Kalman Filter. Once the ball leaves the frame, it predicts the location that the ball would intersect with the Z-Plane using the estimated state data and publishes the predicted location as a geometry_msgs/PoseStamped message. The final predicted location of the ball is a 3-D real-world coordinate at a fixed distance (along the Z-Axis/Plane of the RealSense Camera) from the Sawyer. 
-            <br><br>
-
-            <b class="small">hardcoded.py:</b> This ROS node subscribes to a geometry_msgs/PoseStamped message published by the prediction node, and performs a lookup for the end-effector position that is closest to the predicted location, in a dictionary (generated offline) that maps from end effector positions to joint angles. It then uses these joint angles and moves the arm to the desired location. 
-            <br><br>
+            
 
             <b>How Does it Work?</b>
             <br><br>

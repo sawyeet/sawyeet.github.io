@@ -181,6 +181,7 @@ div.links{
     text-align: center;
     font-size: small;
     padding-top: 0;
+    padding-bottom: 20px;
     font-style: italic;
     font-weight: 700;
 }
@@ -193,6 +194,16 @@ b.small{
 
 div.oneline_images{
     display: inline-block;
+    text-align: center;
+    width: fit-content;
+    padding: 0;
+}
+
+.oneline_block{
+    text-align: center; 
+    display: flex;
+    width: 100%;
+    justify-content: center;
     padding: 0;
 }
 

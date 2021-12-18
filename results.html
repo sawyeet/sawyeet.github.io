@@ -27,8 +27,7 @@
             <br><br>
             We were able to achieve our target goals for this project - the Sawyer robot is able to intercept balls thrown within its reachable workspace (60 cm x 60 cm excluding the paddle size). Specifically, the robot is able to (i) detect and track the x, y, and z position a projectile using a RealSense camera, (ii) predict the ball's trajectory in real-time, and (iii) actuate the end-effector (paddle) to intercept the ball. 
             <br><br>
-
-            <div style="text-align: center;">
+            <div class="oneline_block">
                 <div class="oneline_images">
                     <div class="img"><img src="https://drive.google.com/uc?export=view&id=1df_8vhyRKiVJth3I_VAaSOtWKMkl93sZ" alt="Sawyer Robot" width=80% ></div>
                     <div class="label">Figure 1: Mask of the green color</div>
@@ -47,8 +46,8 @@
             While the prediction node often generates reliable trajectories, the quality of its predictions is highly dependent on the quality of the ball toss and the number of frames recorded. Specifically, when the ball is thrown toward the camera, at least four frames of position data (mid-throw) must be recorded to generate an accurate trajectory prediction. Given the narrow camera FOV and the limited throwing distance, the ball must be thrown diagonally (towards the camera) to achieve maximum accuracy. However, for a proper ball throw, the prediction node can interpolate the ball's trajectory (2 meters behind the camera) within 15 cm of the actual position. One such generated trajectory is shown in Figure 3. 
 
             In the cases with less number of frames detected (Figure 4), our algorithm does its best to generalize using the equations of motion, and gives out a reasonable prediction path. However, these paths often have a large error. Our prediction can also handle those situations where the ball is detected in the hand of the user for a few frames before the actual throw (Figure 5). The Kalman filter is able to ignore those measurements assuming that there are enough frames after it. 
-
-            <div style="text-align: center;">
+            <br><br>
+            <div class="oneline_block">
                 <div class="oneline_images">
                     <div class="img"><img src="https://drive.google.com/uc?export=view&id=1IjUxCdX388sg_Hz6RplmYJFgo25j55qF" alt="Sawyer Robot" width=80% ></div>
                     <div class="label">Figure 4: Prediction with less frames</div>
@@ -59,7 +58,6 @@
                 </div>
             </div>
 
-            <br><br>
             Similarly, the performance of the end-effector actuation node is dependent on both the quality of the ball throw and the accuracy of the predicted trajectory. The hash-map lookup table we used provides faster end-effector actuation compared to typical IK solvers such as MoveIt IK Solver used in Lab 7. However, Sawyer's speed limitations prevent the end-effector from intercepting the ball if it is travelling too fast. The ball must also be thrown accurately within the reachable workspace of the robot, and within a reasonable distance from the hardcoded end-effector locations. Moreover, if the prediction node generates incorrect final positions (which will happen if it does not receive enough frames to predict accurately), the end-effector may move to the wrong position and will not deflect the thrown ball. Regardless, given an accurate ball throw within the reachable workspace and an accurately predicted trajectory, the robot arm will reliably intercept the thrown ball. Specifically, our Sawyer was able to intercept 7 out of 10 thrown balls consistently. A video of the actuation and ball interception is shown.
             <br><br>
 

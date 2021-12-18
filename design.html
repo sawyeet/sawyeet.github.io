@@ -46,6 +46,10 @@
             <br><br>
             The third design choice was to decide on the technique used to predict the location of the ball. We initially used a simple quadratic polynomial fit to predict the trajectory, but soon realized that the results were extremely inaccurate due to the various measurement noises and the low number of frames captured by the RealSense camera. So, we tried using a ballistic trajectory equation instead, to fit the measured data, and noticed that the results were significantly better, but still suffered with issues especially when the measurements were noisy. Finally, we decided to estimate the state of the ball (positions and velocities) using a simplified version of the Kalman Filter to account for the noisy measurements, which resulted in accurate and reliable predicted trajectories. 
             <br><br>
+            <div class="res_vids">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/QeNqzBANGDA?mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br><br>
             Finally, one of the biggest constraints was due to the slow movement speed of the Sawyer, specifically the low joint speeds. To be able to react in time (0.5 - 0.8 seconds), we had to design the system to avoid the MoveIt based path planning and IK solving and set the joint angles directly. To do this, we manually measured points in the 3-D space and created a hashmap from end effector positions to joint angles thereby avoiding an IK solver. 
             <br><br>
                 <b>Design Choices and Real-World Criteria</b>

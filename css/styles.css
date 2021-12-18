@@ -50,6 +50,16 @@ div.para{
     text-align: justify;
 }
 
+iframe{
+    padding: 10;
+    margin: 0;
+}
+
+div.res_vids{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
 
 div.headerd{
     text-align: center;

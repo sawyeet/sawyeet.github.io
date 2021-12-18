@@ -41,6 +41,8 @@ div {
 }
 
 div.para{
+    top: 0%;
+
     padding-left: 10%;
     padding-right: 10%;
     font-size: small;
@@ -52,6 +54,7 @@ div.headerd{
     text-align: center;
     padding: 0;
     position: fixed;
+    top: 0%;
     z-index: 1000;
     width: 100%;
 }
@@ -71,6 +74,9 @@ h1.header{
     font-weight: 700;
     text-align: center;
     background-color: #ffd866;
+}
+div.body{
+    margin-top: 8rem;
 }
 
 b {
@@ -148,6 +154,7 @@ div.contents a{
     z-index: 1000;
     width: 100%;
     margin-top: 4.35rem;
+    top: 0%;
 }
 
 div.links{

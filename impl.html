@@ -37,7 +37,7 @@
 
             The second one is the RealSense D435i (Figure 2). The camera has a max resolution of 1280x720 for the depth camera and 1920x1080 for the rgb image. The max fps is 90 FPS for the depth and 30 FPS for the RGB camera at 640x480 resolution. The FOV of the camera is very small at 87°x 58°.
             <br><br>
-            <div class="img"><img src="https://drive.google.com/uc?export=view&id=1ZyDpztwG5FsKdMEEYVW_f8LJ1SRcGumq" alt="Sawyer Robot" width=20% ></div>
+            <div class="img"><img src="images/ball.png" alt="Sawyer Robot" width=40% style="filter: brightness(1.5);"></div>
             <div class="label">Figure 3: Balloon with duct tape</div>
             
             The final piece of hardware was the “ball” (Figure 3), which we constructed using a balloon and duct tape. The tennis ball that we tested worked well when held, but due to its high speed when thrown, the prediction node failed sometimes as it was not able to capture enough frames of the position of the ball in order to accurately predict its trajectory. So, we used a partially inflated balloon (to about 40% capacity), and wrapped it with a few rounds of neon green colored duct tape, ensuring that it could still travel at slower speeds than a tennis ball. The tape not only improved segmentation and position tracking, but also made the balloon heavier enabling the balloon to follow a parabolic path instead of an unpredictable path. 

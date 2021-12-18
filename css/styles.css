@@ -21,9 +21,10 @@ html,body {
 .line { 
     font-size: 1.2em;
     /* background-color: #ffd866; */
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem;
     color: #2c292d;
     font-weight: 700;
+    text-align: center;
 }
 
 h1.section {
